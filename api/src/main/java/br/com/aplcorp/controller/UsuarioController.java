@@ -38,7 +38,7 @@ public class UsuarioController {
     public List<UsuarioListDTO> listarTodos() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
-                       .map(usuario -> new UsuarioListDTO(usuario.getCpf(), usuario.getNome(), usuario.getEmail(), usuario.getDataNasc(), usuario.getDataCad(), usuario.isAtivo()))
+                       .map(usuario -> new UsuarioListDTO(usuario.getCpf(), usuario.getNome(), usuario.getEmail(), usuario.getDataNasc(), usuario.getDataCad(), usuario.isAtivo(), usuario.isAdmin()))
                        .collect(Collectors.toList());
     }
 
@@ -116,6 +116,7 @@ public class UsuarioController {
             usuarioDTO.setEmail(usuarioAtual.getEmail());
             usuarioDTO.setDataNasc(usuarioAtual.getDataNasc());
             usuarioDTO.setDataCad(usuarioAtual.getDataCad());
+            usuarioDTO.setIsAdmin(usuarioAtual.isAdmin());
             return ResponseEntity.ok(usuarioDTO);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -124,8 +125,7 @@ public class UsuarioController {
     @PostMapping("/recuperar-senha")
     public ResponseEntity<?> recuperarSenha(@RequestBody Usuario usuarioRequisicao) {
         // Supondo que 'dataNasc' na classe Usuario seja do tipo String ou você ajuste conforme necessário
-        Optional<Usuario> usuario = usuarioRepository.findByEmailAndCpfAndDataNasc(
-                usuarioRequisicao.getEmail(), usuarioRequisicao.getCpf(), usuarioRequisicao.getDataNasc());
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(usuarioRequisicao.getEmail());
 
         if (usuario.isPresent()) {
             // Lógica para enviar e-mail de recuperação de senha aqui
