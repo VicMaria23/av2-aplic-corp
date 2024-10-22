@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import br.com.aplcorp.model.Carro;
 
 @Repository
-public interface CarroRepository extends JpaRepository<Carro, String> {
+public interface CarroRepository extends JpaRepository<Carro, Long> {
     Optional<Carro> findByPlaca(String placa);
 }
 
