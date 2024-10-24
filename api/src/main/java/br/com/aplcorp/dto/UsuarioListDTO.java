@@ -9,19 +9,21 @@ public class UsuarioListDTO {
     private LocalDate dataNasc;
     private LocalDate dataCad;
     private boolean ativo;
+    private boolean isAdmin;
 
     // Construtor padrão necessário para o framework
     public UsuarioListDTO() {
     }
 
     // Construtor com todos os campos
-    public UsuarioListDTO(String cpf, String nome, String email, LocalDate dataNasc, LocalDate dataCad, boolean ativo) {
+    public UsuarioListDTO(String cpf, String nome, String email, LocalDate dataNasc, LocalDate dataCad, boolean ativo, boolean isAdmin) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.dataNasc = dataNasc;
         this.dataCad = dataCad;
         this.ativo = ativo;
+        this.isAdmin = isAdmin;
     }
 
     // Getters e Setters
@@ -60,5 +62,11 @@ public class UsuarioListDTO {
     }
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

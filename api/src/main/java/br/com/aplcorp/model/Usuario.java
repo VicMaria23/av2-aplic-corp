@@ -32,18 +32,22 @@ public class Usuario {
     @Column(nullable = false)
     private boolean ativo;
 
+    @Column(nullable = false)
+    private boolean isAdmin;
+
     // Construtor padrão exigido pelo JPA/Hibernate
     public Usuario() {
     }
 
     // Construtor personalizado
-    public Usuario(String cpf, String nome, String senha, String email, LocalDate dataNasc, boolean ativo) {
+    public Usuario(String cpf, String nome, String senha, String email, LocalDate dataNasc, boolean ativo, boolean isAdmin) {
         this.cpf = cpf;
         this.nome = nome;
         this.senha = senha;
         this.email = email;
         this.dataNasc = dataNasc;
         this.ativo = ativo;
+        this.isAdmin = isAdmin;
     }
 
     // getters e setters
@@ -89,6 +93,13 @@ public class Usuario {
     public boolean isAtivo() {
         return ativo;
     }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -112,6 +123,7 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", ativo='" + ativo + '\'' +
+                ", isAdmin=" + isAdmin + '\'' +
                 '}';
     }
 

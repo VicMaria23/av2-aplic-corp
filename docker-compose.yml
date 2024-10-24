@@ -11,6 +11,8 @@ services:
       - "5432:5432"
     networks:
       - network
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
 
   api:
     build: ./api
